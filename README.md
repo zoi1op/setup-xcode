@@ -11,7 +11,7 @@ The list of all available versions can be found in [runner-images](https://githu
 **Notes:**
 - `latest-stable` points to the latest stable version of Xcode
 - `latest` *includes* beta releases that GitHub actions has installed
-- SemVer examples: `16`, `16.4`, `26.3`, `^16.2.0` (find more examples in [SemVer cheatsheet](https://devhints.io/semver))
+- SemVer examples: `16`, `16.4`, `26.3`, `27.0`, `^16.2.0` (find more examples in [SemVer cheatsheet](https://devhints.io/semver))
 - `-beta` suffix after SemVer will only select among beta releases that GitHub actions has installed
 - If sets a specific version, wraps it to single quotes in YAML like `'12.0'` to pass it as string because GitHub trimmes trailing `.0` from numbers
 
@@ -59,6 +59,17 @@ jobs:
     - uses: maxim-lobanov/setup-xcode@v1
       with:
         xcode-version: '26.3'
+```
+
+Set a specific Xcode version on `macos-27`:
+```
+jobs:
+  build:
+    runs-on: macos-27
+    steps:
+    - uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: '27.0'
 ```
 # License
 The scripts and documentation in this project are released under the [MIT License](LICENSE)

@@ -16,7 +16,7 @@ jobs:
     runs-on: ${{ matrix.runner }}
     strategy:
       matrix:
-        runner: [macos-15, macos-26]
+        runner: [macos-15, macos-26, macos-27]
         xcode-version: [latest, latest-stable]
         include:
           # https://github.com/actions/runner-images/blob/main/images/macos/macos-15-Readme.md#xcode
@@ -29,6 +29,9 @@ jobs:
             xcode-version: '26.2'
           - runner: macos-26
             xcode-version: '26.3'
+          # https://github.com/actions/runner-images/blob/main/images/macos/macos-27-Readme.md#xcode
+          - runner: macos-27
+            xcode-version: '27.0'
       fail-fast: false
     steps:
       - name: Checkout
