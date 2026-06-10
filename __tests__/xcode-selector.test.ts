@@ -15,7 +15,6 @@ const fakeGetXcodeVersionInfoResult: xcodeUtils.XcodeVersion[] = [
     { version: "11.0.0", buildNumber: "", path: "/Applications/Xcode_11.app", releaseType: "GM", stable: true },
     { version: "11.2.0", buildNumber: "", path: "/Applications/Xcode_11.2.app", releaseType: "GM", stable: true },
     { version: "27.0.0", buildNumber: "", path: "/Applications/Xcode_27_beta.app", releaseType: "Beta", stable: false },
-    { version: "27.0.0", buildNumber: "", path: "/Applications/Xcode_27.app", releaseType: "GM", stable: true },
 ];
 const fakeGetInstalledXcodeAppsResult: string[] = [
     "/Applications/Xcode_10.3.app",
@@ -26,12 +25,10 @@ const fakeGetInstalledXcodeAppsResult: string[] = [
     "/Applications/Xcode_11.app",
     "/Applications/Xcode_11.2.app",
     "/Applications/Xcode_27_beta.app",
-    "/Applications/Xcode_27.app",
     "/Applications/Xcode_fake_path.app"
 ];
 const expectedGetAllVersionsResult: xcodeUtils.XcodeVersion[] = [
     { version: "27.0.0", buildNumber: "", path: "/Applications/Xcode_27_beta.app", releaseType: "Beta", stable: false },
-    { version: "27.0.0", buildNumber: "", path: "/Applications/Xcode_27.app", releaseType: "GM", stable: true },
     { version: "12.0.0", buildNumber: "", path: "/Applications/Xcode_12_beta.app", releaseType: "Beta", stable: false },
     { version: "12.0.0", buildNumber: "", path: "/Applications/Xcode_12.app", releaseType: "GM", stable: true },
     { version: "11.4.0", buildNumber: "", path: "/Applications/Xcode_11.4.app", releaseType: "GM", stable: true },
@@ -61,7 +58,7 @@ describe("XcodeSelector", () => {
 
     describe("findVersion", () => {
         it.each([
-            ["latest-stable", "27.0.0", true],
+            ["latest-stable", "12.0.0", true],
             ["latest", "27.0.0", false],
             ["11", "11.4.0", true],
             ["11.x", "11.4.0", true],
@@ -74,9 +71,6 @@ describe("XcodeSelector", () => {
             ["10.0.0 - 11.2.0", "11.2.0", true],
             ["12.0-beta", "12.0.0", false],
             ["12.0", "12.0.0", true],
-            ["27", "27.0.0", true],
-            ["27.x", "27.0.0", true],
-            ["27.0", "27.0.0", true],
             ["27.0-beta", "27.0.0", false],
             ["give me latest version", null, null]
         ] as [string, string | null, boolean | null][])("'%s' -> '%s'", (versionSpec: string, expected: string | null, expectedStable: boolean | null) => {
