@@ -16,23 +16,24 @@ jobs:
     runs-on: ${{ matrix.runner }}
     strategy:
       matrix:
-        runner: [macos-15, macos-26, macos-27]
+        runner: [macos-15, macos-26, xcode-27]
         xcode-version: [latest, latest-stable]
         include:
-          # https://github.com/actions/runner-images/blob/main/images/macos/macos-15-Readme.md#xcode
+          # https://github.com/actions/runner-images/blob/main/images/macos/macos-15-arm64-Readme.md
           - runner: macos-15
             xcode-version: '16.2'
           - runner: macos-15
             xcode-version: '16.4'
-          # https://github.com/actions/runner-images/blob/main/images/macos/macos-26-Readme.md#xcode
+          # https://github.com/actions/runner-images/blob/main/images/macos/macos-26-arm64-Readme.md
           - runner: macos-26
             xcode-version: '26.2'
           - runner: macos-26
             xcode-version: '26.3'
-          # https://github.com/actions/runner-images/blob/main/images/macos/macos-27-Readme.md#xcode
-          # Xcode 27 is currently developer beta only
-          - runner: macos-27
-            xcode-version: '27.0-beta'
+          # https://github.com/actions/runner-images/blob/main/images/macos/xcode-27-arm64-Readme.md
+          - runner: xcode-27
+            xcode-version: '27.0'
+          - runner: xcode-27
+            xcode-version: '27.2-beta'
       fail-fast: false
     steps:
       - name: Checkout

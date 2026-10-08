@@ -1,7 +1,7 @@
 # setup-xcode
 This action is intended to switch between pre-installed versions of Xcode for macOS images in GitHub Actions.
 
-The list of all available versions can be found in [runner-images](https://github.com/actions/runner-images/blob/master/images/macos/macos-13-Readme.md#xcode) repository.
+The list of all available versions can be found in [runner-images](https://github.com/actions/runner-images/blob/main/images/macos/macos-26-arm64-Readme.md#xcode) repository.
 
 # Available parameters
 | Argument                | Description              | Format    |
@@ -11,7 +11,7 @@ The list of all available versions can be found in [runner-images](https://githu
 **Notes:**
 - `latest-stable` points to the latest stable version of Xcode
 - `latest` *includes* beta releases that GitHub actions has installed
-- SemVer examples: `16`, `16.4`, `26.3`, `27.0-beta`, `^16.2.0` (find more examples in [SemVer cheatsheet](https://devhints.io/semver))
+- SemVer examples: `16`, `16.4`, `26.3`, `27.0`, `27.2-beta`, `^16.2.0` (find more examples in [SemVer cheatsheet](https://devhints.io/semver))
 - `-beta` suffix after SemVer will only select among beta releases that GitHub actions has installed
 - If sets a specific version, wraps it to single quotes in YAML like `'12.0'` to pass it as string because GitHub trimmes trailing `.0` from numbers
 
@@ -61,15 +61,15 @@ jobs:
         xcode-version: '26.3'
 ```
 
-Set the Xcode 27 developer beta on `macos-27` (currently only a beta is available):
+Set an Xcode 27 version. Xcode 27 lives on the `xcode-27` preview image, not on a `macos-27` label:
 ```
 jobs:
   build:
-    runs-on: macos-27
+    runs-on: xcode-27
     steps:
     - uses: maxim-lobanov/setup-xcode@v1
       with:
-        xcode-version: '27.0-beta'
+        xcode-version: '27.0'
 ```
 # License
 The scripts and documentation in this project are released under the [MIT License](LICENSE)
